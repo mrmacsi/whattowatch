@@ -1,6 +1,8 @@
 <?php
 
+use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
+use Symfony\Component\DomCrawler\Crawler;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,3 +18,17 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::resource('genre',\App\Http\Controllers\UserGenreController::class)
+    ->middleware(['auth', 'verified']);
+
+Route::resource('decision',\App\Http\Controllers\UserGenreController::class)
+    ->middleware(['auth', 'verified']);
+
+Route::middleware('auth')->group(function () {
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+});
+
+require __DIR__.'/auth.php';
