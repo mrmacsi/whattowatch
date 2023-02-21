@@ -59,6 +59,7 @@ class UserDecisionController extends Controller
             'user_id' => $userId,
             'show_id' => $form['show_id'],
             'decision' => $form['button'],
+            'created_at' => now()
         ];
         UserDecision::insert($data);
         return redirect()->back();
