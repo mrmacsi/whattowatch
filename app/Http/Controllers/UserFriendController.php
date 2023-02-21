@@ -17,7 +17,7 @@ class UserFriendController extends Controller
      */
     public function index()
     {
-        $friends = UserFriend::with('friend')
+        $friends = UserFriend::with('sender', 'receiver')
         ->where('sender_id', '=', auth()->user()->id)
         ->orWhere('receiver_id', '=', auth()->user()->id)->get();
         return view('friends',['friends' => $friends,'value'=>route('friend.match',['user'=>auth()->user()])]);
