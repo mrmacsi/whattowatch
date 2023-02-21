@@ -120,18 +120,15 @@ class ShowService
         $response = $request->getBody();
         $html = $response->getContents();
         $crawler = new Crawler($html);
-        $picExists = $crawler->filter('.ipc-poster .ipc-image')->count() > 0;
-        $clearPic = $picExists?
-            $crawler->filter('.ipc-poster .ipc-image')?->image()->getNode()->getAttribute('src'):
-            null;
-        $video = json_decode($crawler->filter('#__NEXT_DATA__')->innerText());
-        $edges = $video->props->pageProps->aboveTheFoldData->primaryVideos->edges;
+        $data = json_decode($crawler->filter('#__NEXT_DATA__')->innerText());
+        $edges = $data->props->pageProps->aboveTheFoldData->primaryVideos->edges;
         if (!isset($edges[0])){
             $videoUrl = null;
         } else {
             $node = $edges[0]->node;
             $videoUrl = $node->playbackURLs[0]->url;
         }
+        $clearPic = $data->props->pageProps->aboveTheFoldData->primaryImage->url;
         $random['quality_pic_src'] = $clearPic;
         $random['video_src'] = $videoUrl;
         Show::upsert($random,'show_id');
