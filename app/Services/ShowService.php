@@ -4,6 +4,7 @@ namespace App\Services;
 
 use App\Models\Show;
 use App\Models\UserDecision;
+use App\Models\UserFriend;
 use App\Models\UserGenreSearch;
 use GuzzleHttp\Client;
 use Symfony\Component\DomCrawler\Crawler;
@@ -87,6 +88,23 @@ class ShowService
             $undecided = $this->searchByUserGenres($userGenres);
         }
         return $undecided;
+    }
+
+    public function friendDecisions(){
+        $user = auth()->user()->id;
+        $friends = UserFriend::with('friend')
+            ->where('receiver_id', '=', $user)
+            ->orWhere('sender_id', '=', $user)->pluck('sender_id')->except($user)->toArray();
+        $alreadyMatched = UserDecision::where('user_decisions.user_id',auth()->user()->id)
+            ->join('user_decisions as friend_decisions','user_decisions.show_id','friend_decisions.show_id')
+            ->whereIn('friend_decisions.user_id',$friends)
+            ->pluck('user_decisions.show_id');
+        $decisitons = UserDecision::whereIn('user_id', $friends)
+            ->whereNotIn('show_id', $alreadyMatched)
+            ->where('decision', 1)
+            ->limit(10)->pluck('show_id')->toArray();
+        $shows = Show::whereIn('show_id', $decisitons)->get()->toArray();
+        return $shows;
     }
 
     public function searchDetails(array $random):array {
