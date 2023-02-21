@@ -55,7 +55,7 @@
                                 </li>
                                 </a>
                             @endforeach
-                            <li class="pb-3 sm:pb-4">
+                            <li class="pb-3 sm:pb-4 pt-3">
                                 {{ $decisions->links() }}
                             </li>
                         </ul>
