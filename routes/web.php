@@ -19,7 +19,7 @@ use Symfony\Component\DomCrawler\Crawler;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('auth.login');
 });
 
 Route::resource('genre', UserGenreController::class)

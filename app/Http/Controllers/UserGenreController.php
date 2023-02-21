@@ -37,7 +37,7 @@ class UserGenreController extends Controller
             Cache::set('genres', $genreData);
         }
         $userGenres = UserGenre::where('user_id', auth()->user()->id)->get();
-        return view('dashboard',['genres' => $genreData,'userGenres' => $userGenres]);
+        return view('dashboard',['genres' => collect($genreData)->chunk(5),'userGenres' => $userGenres]);
     }
 
     /**
