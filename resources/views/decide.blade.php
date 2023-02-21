@@ -32,6 +32,14 @@
                         <form method="POST" action="{{ route('decision.store') }}">
                             @csrf
                             <div class="mx-auto bg-white rounded-xl shadow-md overflow-hidden">
+                                <div class="flex items-center justify-center mb-6">
+                                    <x-danger-button name="button" value="0" class="justify-center w-full">
+                                        {{ __('Dislike') }}
+                                    </x-danger-button>
+                                    <x-primary-button name="button" value="1" class="justify-center w-full">
+                                        {{ __('Like') }}
+                                    </x-primary-button>
+                                </div>
                                 <div class="md:flex">
                                     <div class="md:shrink-0 flex justify-center items-center">
                                         <img class="object-cover w-full h-full md:w-48 md:rounded-lg sm:rounded-lg sm:max-w-sm sm:flex" src="{{$show['quality_pic_src']}}">

@@ -66,7 +66,7 @@ class UserGenreController extends Controller
         UserGenre::where('user_id',$userId)->delete();
         UserGenre::upsert($genres,['user_id']);
         Cache::delete('shows');
-        return redirect()->back();
+        return redirect()->route('decision.index');
     }
 
     /**
