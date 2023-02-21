@@ -24,9 +24,6 @@
                     <x-nav-link :href="route('friend.index')" :active="request()->routeIs('friend.index')">
                         {{ __('Your Friends') }}
                     </x-nav-link>
-                    <x-nav-link :href="route('friend.share')" :active="request()->routeIs('friend.share')">
-                        {{ __('Share') }}
-                    </x-nav-link>
                 </div>
             </div>
 
@@ -94,6 +91,18 @@
             <div class="mt-3 space-y-1">
                 <x-responsive-nav-link :href="route('profile.edit')">
                     {{ __('Profile') }}
+                </x-responsive-nav-link>
+                <x-responsive-nav-link :href="route('genre.index')" :active="request()->routeIs('genre.index')">
+                    {{ __('Dashboard') }}
+                </x-responsive-nav-link>
+                <x-responsive-nav-link :href="route('decision.index')" :active="request()->routeIs('decision.index')">
+                    {{ __('Decide') }}
+                </x-responsive-nav-link>
+                <x-responsive-nav-link :href="route('decision.show')" :active="request()->routeIs('decision.show')">
+                    {{ __('Your Decisions') }}
+                </x-responsive-nav-link>
+                <x-responsive-nav-link :href="route('friend.index')" :active="request()->routeIs('friend.index')">
+                    {{ __('Your Friends') }}
                 </x-responsive-nav-link>
 
                 <!-- Authentication -->

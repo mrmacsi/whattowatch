@@ -20,7 +20,7 @@ class UserFriendController extends Controller
         $friends = UserFriend::with('friend')
         ->where('sender_id', '=', auth()->user()->id)
         ->orWhere('receiver_id', '=', auth()->user()->id)->get();
-        return view('friends',['friends' => $friends]);
+        return view('friends',['friends' => $friends,'value'=>route('friend.match',['user'=>auth()->user()])]);
     }
 
     /**
