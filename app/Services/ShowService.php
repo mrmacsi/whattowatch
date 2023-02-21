@@ -35,7 +35,7 @@ class ShowService
             $start = 1;
         }
         if (!$latest || $latest->completed) {
-            $request = $this->client->get('https://www.imdb.com/search/title/?genres='.$search.'&start='.$start);
+            $request = $this->client->get('https://www.imdb.com/search/title/?genres='.$search.'&start='.$start.'&title_type=feature,tv_movie,tv_series,tv_miniseries,documentary&release_date=1990-01-01,2023-12-31');
             $response = $request->getBody();
             $html = $response->getContents();
             $crawler = new Crawler($html);
@@ -81,8 +81,9 @@ class ShowService
             return $return;
         })->toArray());
         */
+
         $undecided = $this->getUndecidedShows($showData);
-        if (count($undecided) == 0) {
+        if (count($undecided) == 0 && $latest) {
             $latest->completed = 1;
             $latest->save();
             $undecided = $this->searchByUserGenres($userGenres);
