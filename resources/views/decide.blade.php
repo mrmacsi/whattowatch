@@ -32,19 +32,11 @@
                         <form method="POST" action="{{ route('decision.store') }}">
                             @csrf
                             <div class="mx-auto bg-white rounded-xl shadow-md overflow-hidden">
-                                <div class="flex items-center justify-center mb-6">
-                                    <x-danger-button name="button" value="0" class="justify-center w-full">
-                                        {{ __('Dislike') }}
-                                    </x-danger-button>
-                                    <x-primary-button name="button" value="1" class="justify-center w-full">
-                                        {{ __('Like') }}
-                                    </x-primary-button>
-                                </div>
                                 <div class="md:flex">
                                     <div class="md:shrink-0 flex justify-center items-center">
                                         <img class="object-cover w-full h-full md:w-48 md:rounded-lg sm:rounded-lg sm:max-w-sm sm:flex" src="{{$show['quality_pic_src']}}">
                                     </div>
-                                    <div class="p-8">
+                                    <div class="p-4">
                                         <div class="uppercase tracking-wide text-sm text-indigo-500 font-semibold">{{$show['title']}}</div>
                                         <p class="text-gray-700 text-base mb-4">
                                             {{$show['description']}}
@@ -53,6 +45,14 @@
                                         <p class="text-gray-600"><strong>Genre</strong> : {{$show['genre']}}</p>
                                         <p class="text-gray-600"><strong>Rating</strong> : {{$show['rating']}}</p>
                                         <p class="text-gray-600"><a target="_blank" href="https://www.imdb.com/title/{{$show['show_id']}}">IMDB</a></p>
+                                    </div>
+                                    <div class="flex items-center justify-center mb-6 lg:hidden sm:hidden">
+                                        <x-danger-button name="button" value="0" class="justify-center w-full">
+                                            {{ __('Dislike') }}
+                                        </x-danger-button>
+                                        <x-primary-button name="button" value="1" class="justify-center w-full">
+                                            {{ __('Like') }}
+                                        </x-primary-button>
                                     </div>
                                     @if(isset($show['video_src']))
                                         <div class="md:shrink-0 flex justify-center items-center lg:w-96">
