@@ -64,7 +64,6 @@
                                 </div>
                             </div>
                             <input type="hidden" name="show_id" value="{{$show['show_id']}}">
-
                         </form>
                     </div>
                 </div>
