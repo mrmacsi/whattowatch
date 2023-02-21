@@ -28,7 +28,7 @@
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900">
                     <div class="bg-white">
-                        <ul class="max-w-md divide-y divide-gray-200 dark:divide-gray-700">
+                        <ul class="divide-y divide-gray-200 dark:divide-gray-700">
                             @foreach($decisions as $decision)
                                 <a href="{{ route('show.show',['show'=>$decision->show->id]) }}">
                                 <li class="pb-3 sm:pb-4">
