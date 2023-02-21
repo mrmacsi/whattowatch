@@ -25,7 +25,7 @@
                         </div>
                         @if(isset($show['video_src']))
                             <div class="md:shrink-0 flex justify-center items-center lg:w-96">
-                                <video class="object-cover w-full rounded-b-lg h-auto md:w-full sm:rounded-lg md:rounded-lg sm:w-full sm:flex" autoplay muted>
+                                <video class="object-cover w-full rounded-b-lg h-auto md:w-full sm:rounded-lg md:rounded-lg sm:w-full sm:flex" autoplay>
                                     <source src="{{$show['video_src']}}" type="video/mp4" />
                                 </video>
                             </div>
