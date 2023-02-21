@@ -11,7 +11,7 @@
                 <div class="p-6 text-gray-900">
                     <div class="bg-white">
                         <span>
-                            <span class="mb-5 text-lg font-medium text-gray-900 dark:text-white">Share to a friend</span>
+                            <span class="mb-5 text-lg font-medium text-gray-900">Share to a friend</span>
                             <input type="text" class="w-full" value="{{$value}}">
                         </span>
                     </div>
@@ -26,7 +26,7 @@
                 <div class="p-6 text-gray-900">
                     <div class="bg-white">
                         <span>
-                            <span class="mb-5 text-lg font-medium text-gray-900 dark:text-white">{{ auth()->user()->name }}'s friends</span>
+                            <span class="mb-5 text-lg font-medium text-gray-900">{{ auth()->user()->name }}'s friends</span>
                         </span>
                         @foreach($friends as $friend)
                             <div>
