@@ -27,7 +27,7 @@
             @if (Route::has('login'))
                 <div class="hidden fixed top-0 right-0 px-6 py-4 sm:block">
                     @auth
-                        <a href="{{ url('/dashboard') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Dashboard</a>
+                        <a href="{{ url('/genre') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Dashboard</a>
                     @else
                         <a href="{{ route('login') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Log in</a>
 
@@ -38,29 +38,6 @@
                 </div>
             @endif
 
-        <div class="bg-white">
-            <form name="genrestore" id="genrestore" method="post" action="{{route('genre.store')}}">
-                @csrf
-                <h3 class="mb-5 text-lg font-medium text-gray-900 dark:text-white">Choose Genre:</h3>
-                <ul class="grid w-full gap-6 grid-cols-5">
-                    @foreach($genres as $genre)
-                        <li>
-                            <input type="checkbox"  name="{{$genre['title']}}" id="{{$genre['title']}}" value="{{$genre['title']}}" class="hidden peer" required="">
-                            <label for="{{$genre['title']}}" class="inline-flex items-center justify-between w-full p-5 text-gray-500 bg-white border-2 border-gray-200 rounded-lg cursor-pointer dark:hover:text-gray-300 dark:border-gray-700 peer-checked:border-blue-600 hover:text-gray-600 dark:peer-checked:text-gray-300 peer-checked:text-gray-600 hover:bg-gray-50 dark:text-gray-400 dark:bg-gray-800 dark:hover:bg-gray-700">
-                                <div class="block">
-                                    <img src="{{$genre['src']}}">
-                                </div>
-                            </label>
-                        </li>
-                    @endforeach
-                </ul>
-                <div class="flex p-5 space-x-2 justify-center">
-                    <button type="button" class="inline-block px-6 py-2.5 bg-blue-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out">
-                        Submit
-                    </button>
-                </div>
-            </form>
-        </div>
         </div>
     </body>
 </html>

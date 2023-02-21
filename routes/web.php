@@ -1,6 +1,9 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\UserDecisionController;
+use App\Http\Controllers\UserFriendController;
+use App\Http\Controllers\UserGenreController;
 use Illuminate\Support\Facades\Route;
 use Symfony\Component\DomCrawler\Crawler;
 
@@ -19,10 +22,32 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::resource('genre',\App\Http\Controllers\UserGenreController::class)
+Route::resource('genre', UserGenreController::class)
     ->middleware(['auth', 'verified']);
 
-Route::resource('decision',\App\Http\Controllers\UserGenreController::class)
+Route::resource('show', \App\Http\Controllers\ShowController::class)
+    ->middleware(['auth', 'verified']);
+
+Route::resource('friend', UserFriendController::class)
+    ->middleware(['auth', 'verified']);
+
+Route::get('friend-match/{user}', [UserFriendController::class, 'match'])
+    ->name('friend.match')
+    ->middleware(['auth', 'verified']);
+
+Route::get('friend/{user}/matches', [UserFriendController::class, 'matches'])
+    ->name('friend.matches')
+    ->middleware(['auth', 'verified']);
+
+Route::get('friend-share', [UserFriendController::class, 'share'])
+    ->name('friend.share')
+    ->middleware(['auth', 'verified']);
+
+Route::resource('decision', UserDecisionController::class)
+    ->middleware(['auth', 'verified']);
+
+Route::get('decision-list', [UserDecisionController::class, 'show'])
+    ->name('decision.show')
     ->middleware(['auth', 'verified']);
 
 Route::middleware('auth')->group(function () {

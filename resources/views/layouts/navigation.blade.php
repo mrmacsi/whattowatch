@@ -15,8 +15,17 @@
                     <x-nav-link :href="route('genre.index')" :active="request()->routeIs('genre.index')">
                         {{ __('Dashboard') }}
                     </x-nav-link>
-                    <x-nav-link :href="route('genre.index')" :active="request()->routeIs('decision.index')">
+                    <x-nav-link :href="route('decision.index')" :active="request()->routeIs('decision.index')">
                         {{ __('Decide') }}
+                    </x-nav-link>
+                    <x-nav-link :href="route('decision.show')" :active="request()->routeIs('decision.show')">
+                        {{ __('Your Decisions') }}
+                    </x-nav-link>
+                    <x-nav-link :href="route('friend.index')" :active="request()->routeIs('friend.index')">
+                        {{ __('Your Friends') }}
+                    </x-nav-link>
+                    <x-nav-link :href="route('friend.share')" :active="request()->routeIs('friend.share')">
+                        {{ __('Share') }}
                     </x-nav-link>
                 </div>
             </div>
