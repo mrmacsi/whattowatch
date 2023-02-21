@@ -34,6 +34,7 @@ class ShowService
         } else {
             $start = 1;
         }
+        $stop = false;
         if (!$latest || $latest->completed) {
             $request = $this->client->get('https://www.imdb.com/search/title/?genres='.$search.'&start='.$start.'&title_type=feature,tv_movie,tv_series,tv_miniseries,documentary&release_date=1990-01-01,2023-12-31');
             $response = $request->getBody();
@@ -56,6 +57,9 @@ class ShowService
                     'description' => $description->count()>1?$description->eq(1)->text():null,
                 ];
             });
+            if (count($showData)<50){
+                $stop = true;
+            }
             //remove the unknown pics
             $showData = collect($showData)->filter(function ($show){
                 return $show['pic_src'] != "https://m.media-amazon.com/images/S/sash/NapCxx-VwSOJtCZ.png";
@@ -83,7 +87,7 @@ class ShowService
         */
 
         $undecided = $this->getUndecidedShows($showData);
-        if (count($undecided) == 0 && $latest) {
+        if (count($undecided) == 0 && $latest && !$stop) {
             $latest->completed = 1;
             $latest->save();
             $undecided = $this->searchByUserGenres($userGenres);
