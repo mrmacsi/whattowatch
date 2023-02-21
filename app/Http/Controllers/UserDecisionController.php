@@ -24,8 +24,8 @@ class UserDecisionController extends Controller
      */
     public function index()
     {
-        $userGenres = UserGenre::where('user_id', auth()->user()->id)->pluck('genre');
-        $showData = $this->showService->searchByUserGenres($userGenres);
+        $userGenres = UserGenre::where('user_id', auth()->user()->id)->get();
+        $showData = $this->showService->searchByUserGenres($userGenres->pluck('genre'));
         $friendDecisions = $this->showService->friendDecisions();
         $random = collect($showData)->merge($friendDecisions)->random();
         $random = $this->showService->searchDetails($random);
@@ -67,7 +67,7 @@ class UserDecisionController extends Controller
      */
     public function show()
     {
-        $userGenres = UserGenre::where('user_id', auth()->user()->id)->pluck('genre');
+        $userGenres = UserGenre::where('user_id', auth()->user()->id)->get();
         $decisionAll = UserDecision::where('user_id', auth()->user()->id)
             ->with('show')
             ->select('id','show_id','decision')
