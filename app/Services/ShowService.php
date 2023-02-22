@@ -144,6 +144,7 @@ class ShowService
         $random['video_src'] = $videoUrl;
         $random['genre'] = $genres;
         $random['type'] = $mainData->titleType->text;
+        $random['title'] = $mainData->titleText->text." ({$mainData->releaseDate->year})";
         $random['release_date'] = $mainData->releaseDate->year.'/'.$mainData->releaseDate->month.'/'
             .$mainData->releaseDate->day;
         $random['status'] = true;
