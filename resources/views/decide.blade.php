@@ -12,6 +12,7 @@
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900">
                     <div class="bg-white">
+                        @if(isset($show))
                         <form method="POST" action="{{ route('decision.store') }}">
                             @csrf
                             <div class="mx-auto bg-white rounded-xl shadow-md overflow-hidden">
@@ -60,6 +61,9 @@
                             </div>
                             <input type="hidden" name="show_id" value="{{$show['show_id']}}">
                         </form>
+                        @else
+                        Nothing left to show, please change genre to explore more
+                        @endif
                     </div>
                 </div>
             </div>
