@@ -17,7 +17,6 @@
                             <div class="mx-auto bg-white rounded-xl shadow-md overflow-hidden">
                                 <div class="md:flex">
                                     <div class="md:shrink-0 flex justify-center items-center">
-                                        @dd($show)
                                         <img class="object-cover w-full h-full md:w-48 md:rounded-lg sm:rounded-lg sm:max-w-sm sm:flex" src="{{$show['quality_pic_src']??$show['pic_src']}}">
                                     </div>
                                     <div class="p-4">
