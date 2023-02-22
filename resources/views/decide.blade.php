@@ -28,7 +28,7 @@
                                         <p class="text-gray-600"><strong>Duration</strong> : {{$show['duration']}}</p>
                                         <p class="text-gray-600"><strong>Genre</strong> : {{$show['genre']}}</p>
                                         <p class="text-gray-600"><strong>Rating</strong> : {{$show['rating']}}</p>
-                                        <p class="text-gray-600"><strong>Release Date</strong> : {{$show['release_date']}}</p>
+                                        <p class="text-gray-600"><strong>Release Date</strong> : {{ Carbon\Carbon::parse($show['release_date'])->format('d F Y') }}</p>
                                         <p class="text-gray-600"><a target="_blank" href="https://www.imdb.com/title/{{$show['show_id']}}">IMDB</a></p>
                                     </div>
                                     <div class="flex items-center justify-center mb-6 lg:hidden sm:hidden">
