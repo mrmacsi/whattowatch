@@ -113,7 +113,7 @@ class ShowService
     }
 
     public function searchDetails(array $random):array {
-        if (isset($random['video_src']) || isset($random['quality_pic_src'])){
+        if (isset($random['status']) && $random['status']){
             return $random;
         }
         $request = $this->client->get("https://www.imdb.com/title/{$random['show_id']}/");
@@ -121,16 +121,23 @@ class ShowService
         $html = $response->getContents();
         $crawler = new Crawler($html);
         $data = json_decode($crawler->filter('#__NEXT_DATA__')->innerText());
-        $edges = $data->props->pageProps->aboveTheFoldData->primaryVideos->edges;
+        $mainData = $data->props->pageProps->aboveTheFoldData;
+        $genres = collect($mainData->genres->genres)->pluck('text')->join(', ');
+        $edges = $mainData->primaryVideos->edges;
         if (!isset($edges[0])){
             $videoUrl = null;
         } else {
             $node = $edges[0]->node;
             $videoUrl = $node->playbackURLs[0]->url;
         }
-        $clearPic = $data->props->pageProps->aboveTheFoldData->primaryImage->url;
+        $clearPic = $mainData->primaryImage->url;
         $random['quality_pic_src'] = $clearPic;
         $random['video_src'] = $videoUrl;
+        $random['genre'] = $genres;
+        $random['type'] = $mainData->titleType->text;
+        $random['release_date'] = $mainData->releaseDate->year.'/'.$mainData->releaseDate->month.'/'
+            .$mainData->releaseDate->day;
+        $random['status'] = true;
         Show::upsert($random,'show_id');
         return $random;
     }
