@@ -18,9 +18,11 @@
                             <p class="text-gray-700 text-base mb-4">
                                 {{$show['description']}}
                             </p>
+                            <p class="text-gray-600"><strong>Type</strong> : {{$show['type']}}</p>
                             <p class="text-gray-600"><strong>Duration</strong> : {{$show['duration']}}</p>
                             <p class="text-gray-600"><strong>Genre</strong> : {{$show['genre']}}</p>
                             <p class="text-gray-600"><strong>Rating</strong> : {{$show['rating']}}</p>
+                            <p class="text-gray-600"><strong>Release Date</strong> : {{$show['release_date']}}</p>
                             <p class="text-gray-600"><a target="_blank" href="https://www.imdb.com/title/{{$show['show_id']}}">IMDB</a></p>
                         </div>
                         @if(isset($show['video_src']))

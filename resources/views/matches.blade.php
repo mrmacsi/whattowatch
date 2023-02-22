@@ -22,9 +22,16 @@
                                             <p class="text-sm text-gray-500 truncate dark:text-gray-400">
                                                 {{ $decision->show->title }}
                                             </p>
-                                            <p class="text-sm text-gray-500 truncate dark:text-gray-400">
-                                                {{ $decision->show->duration }} | {{ $decision->show->rating }} | {{ $decision->show->genre }}
-                                            </p>
+                                            @if($decision->show->type || $decision->show->release_date)
+                                                <p class="text-sm text-gray-500 truncate dark:text-gray-400">
+                                                    {{ $decision->show->type }} | {{ $decision->show->release_date }}
+                                                </p>
+                                            @endif
+                                            @if($decision->show->duration || $decision->show->rating || $decision->show->genre)
+                                                <p class="text-sm text-gray-500 truncate dark:text-gray-400">
+                                                    {{ $decision->show->duration }} | {{ $decision->show->rating }} | {{ $decision->show->genre }}
+                                                </p>
+                                            @endif
                                             <p class="text-sm text-gray-500 truncate dark:text-gray-400">
                                                 {{ $decision->show->description }}
                                             </p>
