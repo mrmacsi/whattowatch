@@ -14,7 +14,7 @@
                         <ul class="divide-y divide-gray-200 dark:divide-gray-700">
                             @foreach($decisions as $decision)
                                 <li class="pb-3 sm:pb-4">
-                                    <a href="{{ route('show.show',['show'=>$decision->show->id]) }}">
+                                    <a href="{{ route('show.show',['show'=>$decision->show->show_id]) }}">
                                     <div class="flex items-center space-x-4">
                                         <div class="flex-shrink-0">
                                             <img class="w-8 h-8 rounded-full" src="{{ $decision->show->pic_src }}" alt="Neil image">

@@ -125,9 +125,8 @@ class ShowService
         $response = $request->getBody();
         $html = $response->getContents();
         $crawler = new Crawler($html);
-        $data = json_decode($crawler->filter('#__NEXT_DATA__')->innerText());
 
-        return $data->props->pageProps->aboveTheFoldData;
+        return json_decode($crawler->filter('#__NEXT_DATA__')->innerText());
     }
 
     public function searchDetails(array $random):array {
@@ -135,6 +134,7 @@ class ShowService
             return $random;
         }
         $mainData = $this->getSingleShow($random['show_id']);
+        $mainData = $mainData->props->pageProps->aboveTheFoldData;
         // hulu collect($data->props->pageProps->mainColumnData->detailsExternalLinks->edges)->toArray();
         $genres = collect($mainData->genres->genres)->pluck('text')->join(', ');
         $edges = $mainData->primaryVideos->edges;
