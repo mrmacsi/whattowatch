@@ -122,6 +122,7 @@ class ShowService
         $crawler = new Crawler($html);
         $data = json_decode($crawler->filter('#__NEXT_DATA__')->innerText());
         $mainData = $data->props->pageProps->aboveTheFoldData;
+        // hulu collect($data->props->pageProps->mainColumnData->detailsExternalLinks->edges)->toArray();
         $genres = collect($mainData->genres->genres)->pluck('text')->join(', ');
         $edges = $mainData->primaryVideos->edges;
         if (!isset($edges[0])){
