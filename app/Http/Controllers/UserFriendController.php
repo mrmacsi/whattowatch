@@ -84,9 +84,10 @@ class UserFriendController extends Controller
             ->where('user_decisions.decision',1)
             ->where('friend_decisions.user_id',$user->id)
             ->where('friend_decisions.decision',1)
-            ->orderBy('user_decisions.id','desc')
-            ->simplePaginate(10);
-        return view('matches',['user' => $user, 'decisions' => $decisions]);
+            ->orderBy('user_decisions.id','desc');
+        $count = $decisions->count();
+        $decisions = $decisions->simplePaginate(10);
+        return view('matches',['user' => $user, 'decisions' => $decisions, 'count' => $count]);
     }
 
 
