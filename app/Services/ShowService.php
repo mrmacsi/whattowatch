@@ -150,10 +150,10 @@ class ShowService
                 .$mainData->releaseDate->day;
         } else if (isset($mainData->releaseDate->year) && isset($mainData->releaseDate->month)){
             $random['title'] = $mainData->titleText->text." ({$mainData->releaseDate->year})";
-            $random['release_date'] = $mainData->releaseDate->year.'/'.$mainData->releaseDate->month;
+            $random['release_date'] = $mainData->releaseDate->year.'/'.$mainData->releaseDate->month.'/1';
         } else if (isset($mainData->releaseDate->year)){
             $random['title'] = $mainData->titleText->text." ({$mainData->releaseDate->year})";
-            $random['release_date'] = $mainData->releaseDate->year;
+            $random['release_date'] = $mainData->releaseDate->year.'/1/1';
         } else {
             $random['title'] = $mainData->titleText->text;
         }
