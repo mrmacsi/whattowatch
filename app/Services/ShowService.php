@@ -120,16 +120,21 @@ class ShowService
         return Show::whereIn('show_id', $decisions)->get()->toArray();
     }
 
-    public function searchDetails(array $random):array {
-        if (isset($random['status']) && $random['status']){
-            return $random;
-        }
-        $request = $this->client->get("https://www.imdb.com/title/{$random['show_id']}/");
+    public function getSingleShow($show_id) {
+        $request = $this->client->get("https://www.imdb.com/title/{$show_id}/");
         $response = $request->getBody();
         $html = $response->getContents();
         $crawler = new Crawler($html);
         $data = json_decode($crawler->filter('#__NEXT_DATA__')->innerText());
-        $mainData = $data->props->pageProps->aboveTheFoldData;
+
+        return $data->props->pageProps->aboveTheFoldData;
+    }
+
+    public function searchDetails(array $random):array {
+        if (isset($random['status']) && $random['status']){
+            return $random;
+        }
+        $mainData = $this->getSingleShow($random['show_id']);
         // hulu collect($data->props->pageProps->mainColumnData->detailsExternalLinks->edges)->toArray();
         $genres = collect($mainData->genres->genres)->pluck('text')->join(', ');
         $edges = $mainData->primaryVideos->edges;

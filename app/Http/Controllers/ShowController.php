@@ -65,7 +65,8 @@ class ShowController extends Controller
     public function check(Show $show)
     {
         $show->status = 0;
-        $this->showService->searchDetails($show->toArray());
+        $result = $this->showService->getSingleShow($show->id);
+        dd($result);
         return redirect()->route('show.show', ['show' => $show['id']]);
     }
 
