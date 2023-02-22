@@ -10,6 +10,7 @@
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900">
                     <div class="bg-white">
+                        <div>@dd($decisions)</div>
                         <ul class="divide-y divide-gray-200 dark:divide-gray-700">
                             @foreach($decisions as $decision)
                                 <li class="pb-3 sm:pb-4">
