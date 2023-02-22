@@ -97,19 +97,27 @@ class ShowService
 
     public function friendDecisions(){
         $user = auth()->user()->id;
-        $friends = UserFriend::with('friend')
-            ->where('receiver_id', '=', $user)
-            ->orWhere('sender_id', '=', $user)->pluck('sender_id')->except($user)->toArray();
+        $friends = UserFriend::where('receiver_id', '=', $user)
+            ->orWhere('sender_id', '=', $user)
+            ->select('sender_id','receiver_id')
+            ->get();
+        $friends = $friends->map(function($friend) use($user) {
+            if ($friend->sender_id == $user){
+                return $friend->receiver_id;
+            } else {
+                return $friend->sender_id;
+            }
+        })->toArray();
         $alreadyMatched = UserDecision::where('user_decisions.user_id',auth()->user()->id)
             ->join('user_decisions as friend_decisions','user_decisions.show_id','friend_decisions.show_id')
             ->whereIn('friend_decisions.user_id',$friends)
             ->pluck('user_decisions.show_id');
-        $decisitons = UserDecision::whereIn('user_id', $friends)
+        $decisions = UserDecision::whereIn('user_id', $friends)
             ->whereNotIn('show_id', $alreadyMatched)
             ->where('decision', 1)
             ->limit(10)->pluck('show_id')->toArray();
-        $shows = Show::whereIn('show_id', $decisitons)->get()->toArray();
-        return $shows;
+
+        return Show::whereIn('show_id', $decisions)->get()->toArray();
     }
 
     public function searchDetails(array $random):array {
