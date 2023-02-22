@@ -21,7 +21,7 @@
                                         </div>
                                         <div class="flex-1 min-w-0">
                                             <p class="text-sm text-gray-500 truncate dark:text-gray-400">
-                                                {{ $decision->show->title }}
+                                                <strong>{{ $decision->show->title }}</strong>
                                             </p>
                                             @if($decision->show->type || $decision->show->release_date)
                                                 <p class="text-sm text-gray-500 truncate dark:text-gray-400">
