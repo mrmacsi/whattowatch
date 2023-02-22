@@ -13,7 +13,14 @@
                 <div class="p-6 text-gray-900">
                     <div class="bg-white">
                         @if(isset($show))
-                        <form method="POST" action="{{ route('decision.store') }}">
+                            @if(auth()->user()->isAdmin())
+                                <div class="p-3">
+                                    You Are Administrator
+                                    <a target="_blank" class="inline-flex items-center px-4 py-2 bg-red-600 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-red-500 active:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 transition ease-in-out duration-150"
+                                       href="{{ route('show.check',['show'=>$show['id']]) }}">Check Again</a>
+                                </div>
+                            @endif
+                            <form method="POST" action="{{ route('decision.store') }}">
                             @csrf
                             <div class="mx-auto bg-white rounded-xl shadow-md overflow-hidden">
                                 <div class="md:flex">
@@ -62,7 +69,7 @@
                             <input type="hidden" name="show_id" value="{{$show['show_id']}}">
                         </form>
                         @else
-                        Nothing left to show, please change genre to explore more
+                            Nothing left to show, please change genre to explore more
                         @endif
                     </div>
                 </div>

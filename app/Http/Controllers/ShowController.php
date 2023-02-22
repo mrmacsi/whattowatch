@@ -5,9 +5,14 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreShowRequest;
 use App\Http\Requests\UpdateShowRequest;
 use App\Models\Show;
+use App\Services\ShowService;
 
 class ShowController extends Controller
 {
+    public function __construct(protected ShowService $showService)
+    {
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -48,6 +53,20 @@ class ShowController extends Controller
     public function show(Show $show)
     {
         return view('show',['show' => $show]);
+    }
+
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  \App\Models\Show  $show
+     * @return \Illuminate\Http\Response
+     */
+    public function check(Show $show)
+    {
+        $show->status = 0;
+        $this->showService->searchDetails($show->toArray());
+        return redirect()->route('show.show', ['show' => $show['id']]);
     }
 
     /**

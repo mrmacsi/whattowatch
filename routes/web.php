@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\ShowController;
 use App\Http\Controllers\UserDecisionController;
 use App\Http\Controllers\UserFriendController;
 use App\Http\Controllers\UserGenreController;
@@ -25,7 +26,11 @@ Route::get('/', function () {
 Route::resource('genre', UserGenreController::class)
     ->middleware(['auth', 'verified']);
 
-Route::resource('show', \App\Http\Controllers\ShowController::class)
+Route::resource('show', ShowController::class)
+    ->middleware(['auth', 'verified']);
+
+Route::get('show-check/{show}', [ShowController::class, 'check'])
+    ->name('show.check')
     ->middleware(['auth', 'verified']);
 
 Route::resource('friend', UserFriendController::class)
