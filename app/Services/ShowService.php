@@ -144,9 +144,13 @@ class ShowService
         $random['video_src'] = $videoUrl;
         $random['genre'] = $genres;
         $random['type'] = $mainData->titleType->text;
-        $random['title'] = $mainData->titleText->text." ({$mainData->releaseDate->year})";
-        $random['release_date'] = $mainData->releaseDate->year.'/'.$mainData->releaseDate->month.'/'
-            .$mainData->releaseDate->day;
+        if (isset($mainData->releaseDate->year)){
+            $random['title'] = $mainData->titleText->text." ({$mainData->releaseDate->year})";
+            $random['release_date'] = $mainData->releaseDate->year.'/'.$mainData->releaseDate->month.'/'
+                .$mainData->releaseDate->day;
+        } else {
+            $random['title'] = $mainData->titleText->text;
+        }
         $random['status'] = true;
         Show::upsert($random,'show_id');
         return $random;
