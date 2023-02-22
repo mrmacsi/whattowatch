@@ -144,10 +144,16 @@ class ShowService
         $random['video_src'] = $videoUrl;
         $random['genre'] = $genres;
         $random['type'] = $mainData->titleType->text;
-        if (isset($mainData->releaseDate->year)){
+        if (isset($mainData->releaseDate->year) && isset($mainData->releaseDate->month) && isset($mainData->releaseDate->day)){
             $random['title'] = $mainData->titleText->text." ({$mainData->releaseDate->year})";
             $random['release_date'] = $mainData->releaseDate->year.'/'.$mainData->releaseDate->month.'/'
                 .$mainData->releaseDate->day;
+        } else if (isset($mainData->releaseDate->year) && isset($mainData->releaseDate->month)){
+            $random['title'] = $mainData->titleText->text." ({$mainData->releaseDate->year})";
+            $random['release_date'] = $mainData->releaseDate->year.'/'.$mainData->releaseDate->month;
+        } else if (isset($mainData->releaseDate->year)){
+            $random['title'] = $mainData->titleText->text." ({$mainData->releaseDate->year})";
+            $random['release_date'] = $mainData->releaseDate->year;
         } else {
             $random['title'] = $mainData->titleText->text;
         }
