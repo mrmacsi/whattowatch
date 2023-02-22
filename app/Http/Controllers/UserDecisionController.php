@@ -27,7 +27,7 @@ class UserDecisionController extends Controller
         $userGenres = UserGenre::where('user_id', auth()->user()->id)->get();
         $showData = $this->showService->searchByUserGenres($userGenres->pluck('genre'));
         $friendDecisions = $this->showService->friendDecisions();
-        if (count($friendDecisions)>3){
+        if (count($friendDecisions)>10){
             $all = collect($friendDecisions);
         } else {
             $all = collect($showData)->merge($friendDecisions);
