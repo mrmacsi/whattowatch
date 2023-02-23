@@ -78,15 +78,6 @@ class ShowService
             $showIds = json_decode($searched->first()->show_ids,true);
             $showData = Show::whereIn('show_id',$showIds)->get()->toArray();
         }
-        /*
-        UserDecision::insert(collect($showData)->map(function ($item){
-            $return['user_id'] = auth()->user()->id;
-            $return['show_id'] = $item['show_id'];
-            $return['decision'] = rand(0,1);
-            return $return;
-        })->toArray());
-        */
-
         $undecided = $this->getUndecidedShows($showData);
         if (count($undecided) == 0 && $latest && !$stop) {
             $latest->completed = 1;
