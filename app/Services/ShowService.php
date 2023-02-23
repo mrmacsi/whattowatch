@@ -16,7 +16,8 @@ class ShowService
         $this->client = new Client([
             'headers' => [
                 'User-Agent' => $_SERVER['HTTP_USER_AGENT'],
-            ]
+            ],
+            'proxy' => 'http://mainserver:123984@167.99.95.210:3128'
         ]);
     }
 
