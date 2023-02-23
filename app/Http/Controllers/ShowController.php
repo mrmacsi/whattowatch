@@ -59,13 +59,13 @@ class ShowController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  $show
+     * @param  \App\Models\Show  $show
      * @return \Illuminate\Http\Response
      */
-    public function check(string $show)
+    public function check(Show $show)
     {
-        $result = $this->showService->getSingleShow($show);
-        dd($result);
+        $show->status = 0;
+        $this->showService->searchDetails($show->toArray());
         return redirect()->route('show.show', ['show' => $show['id']]);
     }
 
