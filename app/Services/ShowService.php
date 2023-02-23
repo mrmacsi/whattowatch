@@ -37,7 +37,7 @@ class ShowService
         }
         $stop = false;
         if (!$latest || $latest->completed) {
-            $request = $this->client->get('https://www.imdb.com/search/title/?genres='.$search.'&start='.$start.'&title_type=feature,tv_movie,tv_series,tv_miniseries,documentary&release_date=1990-01-01,2023-12-31&languages=en');
+            $request = $this->client->get('https://www.imdb.com/search/title/?genres='.$search.'&start='.$start.'&title_type=feature,tv_movie,tv_series,tv_miniseries,documentary&release_date=1990-01-01,2023-12-31');
             $response = $request->getBody();
             $html = $response->getContents();
             $crawler = new Crawler($html);
