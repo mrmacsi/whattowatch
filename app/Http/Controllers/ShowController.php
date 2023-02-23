@@ -62,12 +62,11 @@ class ShowController extends Controller
      * @param  \App\Models\Show  $show
      * @return \Illuminate\Http\Response
      */
-    public function check(string $show)
+    public function check(Show $show)
     {
-        $show = Show::where('show_id', $show)->first();
         $show->status = 0;
         $this->showService->searchDetails($show->toArray());
-        return redirect()->route('show.show', ['show' => $show['id']]);
+        return redirect()->route('show.show', ['show' => $show['show_id']]);
     }
 
     /**

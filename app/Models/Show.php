@@ -9,4 +9,9 @@ class Show extends Model
 {
     use HasFactory;
     protected $hidden = ['updated_at', 'created_at'];
+
+    public function getRouteKeyName()
+    {
+        return 'show_id';
+    }
 }

@@ -15,7 +15,7 @@
                         <div class="pb-5">You have <strong>{{ $count }}</strong> Decisions</div>
                         <ul class="divide-y divide-gray-200 dark:divide-gray-700">
                             @foreach($decisions as $decision)
-                                <a href="{{ route('show.show',['show'=>$decision->show->id]) }}">
+                                <a href="{{ route('show.show',['show'=>$decision->show->show_id]) }}">
                                 <li class="pb-3 sm:pb-4">
                                     <div class="flex items-center space-x-4">
                                         <div class="flex-shrink-0">
