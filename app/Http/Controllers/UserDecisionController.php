@@ -80,9 +80,10 @@ class UserDecisionController extends Controller
         $decisionAll = UserDecision::where('user_id', auth()->user()->id)
             ->with('show')
             ->select('id','show_id','decision')
-            ->orderBy('id','desc')
-            ->simplePaginate(10);
-        return view('decisions', ['userGenres' => $userGenres, 'decisions' => $decisionAll]);
+            ->orderBy('id','desc');
+        $count = $decisionAll->count();
+        $decisionAll =$decisionAll->simplePaginate(10);
+        return view('decisions', ['userGenres' => $userGenres, 'decisions' => $decisionAll, 'count' => $count]);
     }
 
     /**

@@ -12,6 +12,7 @@
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900">
                     <div class="bg-white">
+                        <div class="pb-5">You have <strong>{{ $count }}</strong> Decisions</div>
                         <ul class="divide-y divide-gray-200 dark:divide-gray-700">
                             @foreach($decisions as $decision)
                                 <a href="{{ route('show.show',['show'=>$decision->show->id]) }}">
