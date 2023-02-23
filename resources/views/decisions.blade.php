@@ -53,7 +53,7 @@
                                 @if(auth()->user()->isAdmin())
                                         <a target="_blank"
                                            class="flex text-white w-full bg-gradient-to-r from-indigo-400 via-indigo-300 to-indigo-400 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-green-300 dark:focus:ring-green-800 shadow-lg shadow-green-500/50 dark:shadow-lg dark:shadow-green-800/80 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2"
-                                           href="{{ route('show.check',['show'=>$decision->id]) }}">Check Again</a>
+                                           href="{{ route('show.check',['show'=>$decision->show_id]) }}">Check Again</a>
                                 @endif
                             @endforeach
                             <li class="pb-3 sm:pb-4 pt-3">
