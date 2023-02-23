@@ -7,6 +7,22 @@
 
     @include('partials.genres')
 
+    @if (session('success'))
+    <div class="py-3">
+        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+                <div class="bg-white">
+                    <div class="bg-green-100 rounded-b text-teal-900 px-4 py-3 shadow-md" role="alert">
+                        <div class="flex">
+                            <p class="font-bold">It was a match!</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    @endif
+
     <div class="py-3">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">

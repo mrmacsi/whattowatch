@@ -66,6 +66,15 @@ class UserDecisionController extends Controller
             'created_at' => now()
         ];
         UserDecision::insert($data);
+        if ($data['decision']) {
+            $otherUserLiked = UserDecision::where('decision', 1)
+                ->where('user_id','!=', $userId)
+                ->where('show_id', $data['show_id'])
+                ->first();
+            if ($otherUserLiked){
+                session()->flash('success','Its a match!');
+            }
+        }
         return redirect()->back();
     }
 
